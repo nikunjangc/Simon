@@ -12,8 +12,9 @@ private Button test;
         setContentView(R.layout.activity_main);
 
         //@NIKE: this is how you change the button with java
-        test = (Button) findViewById(R.id.btn_top_left);
+        test = (Button) findViewById(R.id.green_btn_top_left);
         test.setBackgroundResource(R.drawable.button_top_left_alt);
+
 
     }
 }
