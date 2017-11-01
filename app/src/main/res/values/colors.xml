@@ -11,6 +11,7 @@
     <color name="lightYellow">#FCF604</color>
     <color name="darkBlue">#076C7C</color>
     <color name="lightBlue">#01DBFD</color>
+    <color name="black">#000000</color>
 
 
 </resources>
