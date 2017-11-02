@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/round" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Start"
+        android:onClick="start"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,22 +29,22 @@
         android:layout_marginBottom="5dp">
 
         <Button
-            android:id="@+id/green_btn_top_left"
+            android:id="@+id/green_button"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:background="@drawable/button_top_left"
+            android:background="@drawable/button_green"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
              />
 
 
         <Button
-            android:id="@+id/yellow_btn_top_right"
+            android:id="@+id/yellow_button"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:background="@drawable/button_top_right"
+            android:background="@drawable/button_yellow"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -54,21 +60,21 @@
         android:weightSum="2"
         android:layout_marginTop="5dp">
         <Button
-            android:id="@+id/red_btn_bottom_left"
+            android:id="@+id/red_button"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:background="@drawable/button_bottom_left"
+            android:background="@drawable/button_red"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
 
         <Button
-            android:id="@+id/blue_btn_bottom_right"
+            android:id="@+id/blue_button"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:background="@drawable/button_bottom_right"
+            android:background="@drawable/button_blue"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
