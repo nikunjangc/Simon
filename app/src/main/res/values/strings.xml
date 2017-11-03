@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Simon</string>
     <string name="round">Round: 1</string>
+    <string name="green_button">green</string>
+    <string name="yellow_button">yellow</string>
+    <string name="red_button">red</string>
+    <string name="blue_button">blue</string>
 </resources>
