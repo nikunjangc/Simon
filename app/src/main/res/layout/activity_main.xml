@@ -36,6 +36,8 @@
             android:background="@drawable/button_green"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:onClick="userInput"
+            android:tag="@string/green_button"
              />
 
 
@@ -46,7 +48,9 @@
             android:layout_weight="1"
             android:background="@drawable/button_yellow"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:onClick="userInput"
+            android:tag="@string/yellow_button" />
 
     </LinearLayout>
 
@@ -66,7 +70,9 @@
             android:layout_weight="1"
             android:background="@drawable/button_red"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:onClick="userInput"
+            android:tag="@string/red_button"/>
 
 
         <Button
@@ -76,7 +82,9 @@
             android:layout_weight="1"
             android:background="@drawable/button_blue"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:onClick="userInput"
+            android:tag="@string/blue_button"/>
 
     </LinearLayout>
 

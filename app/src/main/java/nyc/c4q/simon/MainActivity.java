@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void start(View v){
 
-        green.setBackgroundResource(R.drawable.button_green_light);
+        /*green.setBackgroundResource(R.drawable.button_green_light);
 
         new Timer().schedule(new TimerTask() {
             @Override
@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 blue.setBackgroundResource(R.drawable.button_blue_light);
             }
-        }, 3000);
+        }, 3000);*/
+    }
+
+    public void userInput(View v){
+
     }
 }
