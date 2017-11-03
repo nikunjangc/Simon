@@ -18,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //@NIKE: this is how you change the button with java
-        green = (Button) findViewById(R.id.green_btn_top_left);
-        red = (Button) findViewById(R.id.red_btn_bottom_left);
-        blue = (Button) findViewById(R.id.blue_btn_bottom_right);
-        yellow = (Button) findViewById(R.id.yellow_btn_top_right);
-        //test.setBackgroundResource(R.drawable.button_green_light);
+
+        green = (Button) findViewById(R.id.green_button);
+        red = (Button) findViewById(R.id.red_button);
+        blue = (Button) findViewById(R.id.blue_button);
+        yellow = (Button) findViewById(R.id.yellow_button);
+
         //delay code. Put button light pattern inside the runnable
 
         /*new Timer().schedule(new TimerTask() {
@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void start(View v){
+        Simon startSimon = new Simon();
+//TODO connect method to buttons, edit startSimon method
 
         /*green.setBackgroundResource(R.drawable.button_green_light);
 
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void userInput(View v){
+        //TODO read and evaluate user input. can create new method in Simon class.
 
     }
 }
