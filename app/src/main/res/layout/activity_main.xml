@@ -7,17 +7,75 @@
     tools:context="nyc.c4q.simon.MainActivity"
     android:orientation="vertical"
     android:background="@color/black">
+    <LinearLayout
 
-    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/round" />
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/score_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/black"
+                android:onClick="score"
+                android:text="@string/score"
+                android:textSize="20sp"
+                android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/score_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="1dp"
+                android:textColor="@color/white"
+                android:hint="@string/score_hint"
+                android:text="@string/best_score_display"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:weightSum="2">
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Start"
-        android:onClick="start"
+        android:id="@+id/best_score_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/best_score"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_gravity="end"
+        android:onClick="bestScore"
         />
+    <TextView
+        android:id="@+id/best_score_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="45dp"
+        android:textColor="@color/white"
+        android:hint="@string/best_score_hint"
+        android:text="@string/score_display"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,9 +89,9 @@
         <Button
             android:id="@+id/green_button"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="130dp"
             android:layout_weight="1"
-            android:background="@drawable/button_green"
+           android:background="@drawable/button_green"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
              />
@@ -42,11 +100,13 @@
         <Button
             android:id="@+id/yellow_button"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:background="@drawable/button_yellow"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
+
+
 
     </LinearLayout>
 
@@ -62,9 +122,9 @@
         <Button
             android:id="@+id/red_button"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="130dp"
             android:layout_weight="1"
-            android:background="@drawable/button_red"
+           android:background="@drawable/button_red"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -72,13 +132,32 @@
         <Button
             android:id="@+id/blue_button"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="130dp"
             android:layout_weight="1"
+
             android:background="@drawable/button_blue"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
+
     </LinearLayout>
+    <Button
+        android:id="@+id/start"
+        android:tag="start"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/start"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        />
+    <Button
+        android:id="@+id/giveUp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="giveUp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:tag="giveUp"/>
 
 
 

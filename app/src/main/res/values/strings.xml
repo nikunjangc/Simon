@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Simon</string>
     <string name="round">Round: 1</string>
+    <string name="score">Score</string>
+    <string name="score_display"></string>
+    <string name="score_hint">0</string>
+    <string name="best_score">Best</string>
+    <string name="best_score_display"></string>
+    <string name="best_score_hint">0</string>
+    <string name="start">start</string>
 </resources>

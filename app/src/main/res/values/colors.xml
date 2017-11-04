@@ -12,6 +12,7 @@
     <color name="darkBlue">#076C7C</color>
     <color name="lightBlue">#01DBFD</color>
     <color name="black">#000000</color>
+    <color name="white">#FFFFFFFF</color>
 
 
 </resources>
