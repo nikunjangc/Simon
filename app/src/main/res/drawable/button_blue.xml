@@ -5,11 +5,13 @@
             <corners android:bottomRightRadius="10000dp"
 
                 />
+
             <solid android:color="@color/darkBlue" />
             <stroke android:width="2dip" android:color="#076C7C" />
             <padding android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp" />
         </shape>
     </item>
+
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners android:bottomRightRadius="10000dp" />
@@ -24,4 +26,5 @@
                 android:top="4dp" />
         </shape>
     </item>
+
 </selector>
