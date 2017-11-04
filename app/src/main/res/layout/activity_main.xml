@@ -91,7 +91,7 @@
             android:layout_width="0dp"
             android:layout_height="130dp"
             android:layout_weight="1"
-            android:background="@color/lightGreen"
+           android:background="@drawable/button_green"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
              />
@@ -102,7 +102,7 @@
             android:layout_width="0dp"
             android:layout_height="130dp"
             android:layout_weight="1"
-            android:background="@color/lightYellow"
+            android:background="@drawable/button_yellow"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -124,7 +124,7 @@
             android:layout_width="0dp"
             android:layout_height="130dp"
             android:layout_weight="1"
-            android:background="@color/lightRed"
+           android:background="@drawable/button_red"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
@@ -134,7 +134,8 @@
             android:layout_width="0dp"
             android:layout_height="130dp"
             android:layout_weight="1"
-            android:background="@color/lightBlue"
+
+            android:background="@drawable/button_blue"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
