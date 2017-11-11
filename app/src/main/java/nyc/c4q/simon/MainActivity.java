@@ -61,157 +61,164 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bestScoreDisplay = (TextView) findViewById(R.id.best_score_display);
         scoreDisplay = (TextView) findViewById(R.id.score_display);
 
-    }
-
-
-    String TAG = "infinite loop";
-
-    public void gamelunch(View view) {
-        random = new Random();
-        int pickcolor = random.nextInt(4) + 1;
-        randomStore.add(pickcolor);
-        Toast.makeText(this, "Level number :" + randomStore.size(), Toast.LENGTH_SHORT).show();
-        for (int i : randomStore) {
-            switch (pickcolor) {
-                case 1:
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            yellow.startAnimation(animation);
-                        }
-                    }, 2000 * counter);
-                    counter++;
-                    break;
-                case 2:
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            green.startAnimation(animation);
-                        }
-                    }, 2000 * counter);
-                    counter++;
-                    break;
-
-                case 3:
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            red.startAnimation(animation);
-                        }
-                    }, 2000 * counter);
-                    counter++;
-                    break;
-                case 4:
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            blue.startAnimation(animation);
-                        }
-                    }, 2000 * counter);
-                    counter++;
-                    break;
-
-            }
-        }
-
-        Log.d(TAG, "gamelunch: " + counter);
 
     }
-
-//    public void userPressedCheck(View view) {
-//        boolean test = false;
-//        switch (view.getId()) {
-//            case R.id.yellow_button:
-//                userStore.add(1);
-//                break;
-//            case R.id.green_button:
-//
-//                userStore.add(2);
-//                break;
-//            case R.id.red_button:
-//
-//                userStore.add(3);
-//                break;
-//            case R.id.blue_button:
-//
-//                userStore.add(4);
-//                break;
-//        }
-//        for (int i = 0; i < randomStore.size(); i++) {
-//            if (randomStore.get(i).equals(userStore.get(i))) {
-//                test = true;
-//            } else {
-//
-//                test = false;
-//                break;
-//            }
-//
-//
-//        }
-//        if (test == true) {
-//            Toast.makeText(this, "Got a  good memory, Next level: " + userStore.size() + 1, Toast.LENGTH_LONG).show();
-//            gamelunch(view);
-//        } else if (test == false) {
-//            Toast.makeText(this, "Not matched: Game Over " + userStore.size() + 1, Toast.LENGTH_LONG).show();
-//            randomStore.clear();
-//        }
-//
-//
-//    }
 
     @Override
     public void onClick(View view) {
         boolean test = false;
-        switch (view.getId()){
-            case R.id.start:
-                gamelunch(view);
-                Log.d(TAG, "onClick: Start was clicked!");
-                Toast.makeText(this, "Your turn now ", Toast.LENGTH_LONG).show();
-
-        }
+        int count = 1;
+        int i = 0;
 
 
             switch (view.getId()) {
+                case R.id.giveUp:
+                    Log.d(TAG, "give up was pressed");
+                    randomStore.clear();
+                    userStore.clear();
+                    start.setVisibility(View.VISIBLE);
+                    giveUp.setVisibility(View.GONE);
+                    break;
+                case R.id.start:
+                    start.setVisibility(View.GONE);
+                    giveUp.setVisibility(View.VISIBLE);
+                    Log.d(TAG, "onClick: Start was clicked!");
+
+                    gamelunch(view);
+                    Log.d(TAG, "what's the problem");
+
+                    Toast.makeText(this, "Simon says, Level number :" + randomStore.size(), Toast.LENGTH_SHORT).show();
+                    // a=randomStore.size();
+                    break;
+            }
+        while (randomStore.size() <= userStore.size()) {
+            switch (view.getId()) {
                 case R.id.yellow_button:
-                    userStore.add(1);
+                    userStore.add(0);
+                    Log.d(TAG, "userstore 0");
+
                     break;
                 case R.id.green_button:
 
-                    userStore.add(2);
+                    userStore.add(1);
+                    Log.d(TAG, "userstore 1");
+
                     break;
                 case R.id.blue_button:
 
-                    userStore.add(3);
+                    userStore.add(2);
+                    Log.d(TAG, "userstore 2");
+
                     break;
                 case R.id.red_button:
-                    userStore.add(4);
+                    userStore.add(3);
+                    Log.d(TAG, "userstore 3");
+
                     break;
             }
-        if (randomStore.size() <= 0) {
+            if (userStore.get(i).equals(randomStore.get(i))) {
+                test = true;
+                i++;
+            } else {
+                test = false;
                 userStore.clear();
-        }
-
-
-        if (userStore.size() ==randomStore.size()) {
-            for (int i = 0; i < randomStore.size(); i++) {
-                if (randomStore.get(i).equals(userStore.get(i))) {
-                    test = true;
-                } else {
-                    test = false;
-                    break;
-                }
+                randomStore.clear();
+                // Log.d(TAG, "Not matched ,the random numbre" + randomStore.get(i) + "the user clicked number" + userStore.get(i))
             }
         }
-
-        if (test) {
-            Toast.makeText(this, "Got a  good memory, Next level: " + userStore.size() + 1, Toast.LENGTH_LONG).show();
+        if (true) {
+            scoreDisplay.setText(String.valueOf(userStore.size()));
+            count += 1;
+            // Log.d(TAG, "userstore " +userStore.size());
+            userStore.clear();
+            Toast.makeText(this, " matched: Next Level: " + count, Toast.LENGTH_LONG).show();
             gamelunch(view);
-        } else {
-            Toast.makeText(this, "Not matched: Game Over " + userStore.size() + 1, Toast.LENGTH_LONG).show();
-            randomStore.clear();
         }
     }
+
+    String TAG = "infinite loop";
+
+    public void gamelunch(View view) {
+           // keepProgramRunning=true;
+            int i=0;
+
+
+           random = new Random();
+            int pickcolor = random.nextInt(4) ; //,2,3,4
+
+            Log.d(TAG, "random number "+pickcolor);
+
+            randomStore.add(pickcolor);     //stores the number
+           int b=randomStore.size();
+             Log.d(TAG,"randomstore size "+b);
+
+
+
+    do {
+        switch (randomStore.get(i)) {
+            case 0:
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        yellow.startAnimation(animation);
+                    }
+                }, 2000 * counter);
+                counter++;
+                Log.d(TAG, "random number 0" );
+                break;
+            case 1:
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        green.startAnimation(animation);
+                    }
+                }, 2000 * counter);
+                counter++;
+                Log.d(TAG, "random number 1" );
+                break;
+
+
+            case 2:
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        blue.startAnimation(animation);
+                    }
+                }, 2000 * counter);
+                counter++;
+                Log.d(TAG, "random number 2" );
+                break;
+            case 3:
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        red.startAnimation(animation);
+                    }
+                }, 2000 * counter);
+                counter++;
+                Log.d(TAG, "random number 3");
+                break;
+
+        }
+        i++;
+        b--;
+    }
+        while ( b>0);
+
+
+
+        Toast.makeText(this, "Simon says,Your turn now ", Toast.LENGTH_LONG).show();
+        userStore.clear();
+        Log.d(TAG, "ramdom store is running");
+
+    }
+
+
 }
+
+
+
+
 
 
 
