@@ -90,9 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "Simon says, Level number :" + randomStore.size(), Toast.LENGTH_SHORT).show();
                     // a=randomStore.size();
                     break;
-            }
-        while (randomStore.size() <= userStore.size()) {
-            switch (view.getId()) {
+
                 case R.id.yellow_button:
                     userStore.add(0);
                     Log.d(TAG, "userstore 0");
@@ -116,16 +114,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     break;
             }
-            if (userStore.get(i).equals(randomStore.get(i))) {
-                test = true;
-                i++;
-            } else {
-                test = false;
-                userStore.clear();
-                randomStore.clear();
-                // Log.d(TAG, "Not matched ,the random numbre" + randomStore.get(i) + "the user clicked number" + userStore.get(i))
+            for (int counter = 0; counter < randomStore.size()-1; counter++) {
+                if (randomStore.get(counter).equals(userStore.get(counter))) {
+                    test = true;
+                } else {
+                    test = false;
+                    userStore.clear();
+                    randomStore.clear();
+                    // Log.d(TAG, "Not matched ,the random numbre" + randomStore.get(i) + "the user clicked number" + userStore.get(i))
+                }
             }
-        }
+
         if (true) {
             scoreDisplay.setText(String.valueOf(userStore.size()));
             count += 1;
@@ -139,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String TAG = "infinite loop";
 
     public void gamelunch(View view) {
-           // keepProgramRunning=true;
+
             int i=0;
 
 
