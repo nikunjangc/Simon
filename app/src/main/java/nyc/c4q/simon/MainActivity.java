@@ -67,8 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         boolean test = false;
-        int count = 1;
+        int count = 0;
         int i = 0;
+
+        while (randomStore.size()>userStore.size()) {
 
 
             switch (view.getId()) {
@@ -84,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     giveUp.setVisibility(View.VISIBLE);
                     Log.d(TAG, "onClick: Start was clicked!");
 
-                    gamelunch(view);
                     Log.d(TAG, "what's the problem");
 
                     Toast.makeText(this, "Simon says, Level number :" + randomStore.size(), Toast.LENGTH_SHORT).show();
@@ -94,36 +95,81 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.yellow_button:
                     userStore.add(0);
                     Log.d(TAG, "userstore 0");
+                    if (randomStore.get(i).equals(userStore.get(i))) {
+                   test = true;
+                  }
+                   else {
+                        test=false;
+                        break;
+                    }
 
                     break;
                 case R.id.green_button:
 
                     userStore.add(1);
                     Log.d(TAG, "userstore 1");
+                    if (randomStore.get(i).equals(userStore.get(i))) {
+                        Log.d(TAG, ""+randomStore.size() +"u"+userStore.size());
+
+                        test = true;
+                    }
+                    else {
+                        test=false;
+                        break;
+                    }
+
 
                     break;
                 case R.id.blue_button:
 
                     userStore.add(2);
                     Log.d(TAG, "userstore 2");
+                    if (randomStore.get(i).equals(userStore.get(i))) {
+                        Log.d(TAG, ""+randomStore.size() +"u"+userStore.size());
+
+                        test = true;
+                    }
+                    else {
+                        test=false;
+                        break;
+                    }
+
 
                     break;
                 case R.id.red_button:
                     userStore.add(3);
                     Log.d(TAG, "userstore 3");
+                    if (randomStore.get(i).equals(userStore.get(i))) {
+                        Log.d(TAG, ""+randomStore.size() +"u"+userStore.size());
+                        test = true;
+                    }
+                    else {
+                        test=false;
+                        break;
+                    }
 
                     break;
             }
-            for (int counter = 0; counter < randomStore.size()-1; counter++) {
-                if (randomStore.get(counter).equals(userStore.get(counter))) {
-                    test = true;
-                } else {
-                    test = false;
-                    userStore.clear();
-                    randomStore.clear();
-                    // Log.d(TAG, "Not matched ,the random numbre" + randomStore.get(i) + "the user clicked number" + userStore.get(i))
-                }
+            if (true){
+                i++;
             }
+            else {
+
+                  userStore.clear();
+                  randomStore.clear();
+                  break;
+            }
+//            for (int counter = 0; counter < randomStore.size() - 1; counter++) {
+//                if (randomStore.get(counter).equals(userStore.get(counter))) {
+//                    test = true;
+//                } else {
+//                    test = false;
+//                    userStore.clear();
+//                    randomStore.clear();
+//                    // Log.d(TAG, "Not matched ,the random numbre" + randomStore.get(i) + "the user clicked number" + userStore.get(i))
+//                }
+//            }
+        }
 
         if (true) {
             scoreDisplay.setText(String.valueOf(userStore.size()));
