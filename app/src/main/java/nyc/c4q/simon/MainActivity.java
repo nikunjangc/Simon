@@ -1,5 +1,6 @@
 package nyc.c4q.simon;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -20,12 +21,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button blue;
     private Button yellow;
     private Button start;
-    private Button giveUp;
+    private Button reset;
+    private TextView hint;
     private boolean userPressed;
     private int counter = 1;
     private TextView scoreDisplay, bestScoreDisplay;
-    // AlphaAnimation buttonAnimation;
+
     AlphaAnimation animation;
+    boolean test = true;
+
+    String s="";
 
     int x;
     boolean keepProgramRunning = true;
@@ -33,19 +38,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<Integer> randomStore = new ArrayList<>();
     ArrayList<Integer> userStore = new ArrayList<>();
     Handler handler = new Handler();
+    int count = 0;
 
-    //  Button buttons[] = new Button[4];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         animation = new AlphaAnimation(1f, 0f);
         setupView();
-
-        animation.setDuration(1000);
+        animation.setDuration(800);
     }
 
     public void setupView() {
+        hint=(TextView) findViewById(R.id.hint);
         green = (Button) findViewById(R.id.green_button);
         green.setOnClickListener(this);
         red = (Button) findViewById(R.id.red_button);
@@ -56,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         yellow.setOnClickListener(this);
         start = (Button) findViewById(R.id.start);
         start.setOnClickListener(this);
-        giveUp = (Button) findViewById(R.id.giveUp);
-        giveUp.setOnClickListener(this);
+        reset = (Button) findViewById(R.id.reset);
+        reset.setOnClickListener(this);
         bestScoreDisplay = (TextView) findViewById(R.id.best_score_display);
         scoreDisplay = (TextView) findViewById(R.id.score_display);
 
@@ -66,138 +72,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        boolean test = false;
-        int count = 0;
+
+
         int i = 0;
+        Button button=(Button) view;
 
-        while (randomStore.size()>userStore.size()) {
+        switch (button.getId()) {
+            case R.id.reset:
+           //     Log.d(TAG, "reset up was pressed");
+                randomStore.clear();
+                userStore.clear();
+                start.setVisibility(View.VISIBLE);
+                reset.setVisibility(View.GONE);
+                test=true;
 
 
-            switch (view.getId()) {
-                case R.id.giveUp:
-                    Log.d(TAG, "give up was pressed");
-                    randomStore.clear();
-                    userStore.clear();
-                    start.setVisibility(View.VISIBLE);
-                    giveUp.setVisibility(View.GONE);
+                break;
+            case R.id.start:
+                randomStore.clear();
+                userStore.clear();
+                start.setVisibility(View.GONE);
+                reset.setVisibility(View.VISIBLE);
+                beginGameAnimation();
+            //    Log.d(TAG, "onClick: Start was clicked!");
+                Toast.makeText(this, "Simon says, Level number :" + 1, Toast.LENGTH_SHORT).show();
+                gamelunch(view);
+                break;
+            case R.id.yellow_button:
+                userStore.add(0);
+            //    Log.d(TAG, "userstore 0");
+                testAnswer(view);
+                break;
+            case R.id.green_button:
+
+                userStore.add(1);
+              //  Log.d(TAG, "userstore 1");
+                testAnswer(view);
+                break;
+
+            case R.id.blue_button:
+
+                userStore.add(2);
+             //   Log.d(TAG, "userstore 2");
+                testAnswer(view);
+                break;
+
+            case R.id.red_button:
+                userStore.add(3);
+            //    Log.d(TAG, "userstore 3");
+                testAnswer(view);
+                break;
+
+            default:
                     break;
-                case R.id.start:
-                    start.setVisibility(View.GONE);
-                    giveUp.setVisibility(View.VISIBLE);
-                    Log.d(TAG, "onClick: Start was clicked!");
-
-                    Log.d(TAG, "what's the problem");
-
-                    Toast.makeText(this, "Simon says, Level number :" + randomStore.size(), Toast.LENGTH_SHORT).show();
-                    // a=randomStore.size();
-                    break;
-
-                case R.id.yellow_button:
-                    userStore.add(0);
-                    Log.d(TAG, "userstore 0");
-                    if (randomStore.get(i).equals(userStore.get(i))) {
-                   test = true;
-                  }
-                   else {
-                        test=false;
-                        break;
-                    }
-
-                    break;
-                case R.id.green_button:
-
-                    userStore.add(1);
-                    Log.d(TAG, "userstore 1");
-                    if (randomStore.get(i).equals(userStore.get(i))) {
-                        Log.d(TAG, ""+randomStore.size() +"u"+userStore.size());
-
-                        test = true;
-                    }
-                    else {
-                        test=false;
-                        break;
-                    }
+          }
 
 
-                    break;
-                case R.id.blue_button:
 
-                    userStore.add(2);
-                    Log.d(TAG, "userstore 2");
-                    if (randomStore.get(i).equals(userStore.get(i))) {
-                        Log.d(TAG, ""+randomStore.size() +"u"+userStore.size());
-
-                        test = true;
-                    }
-                    else {
-                        test=false;
-                        break;
-                    }
-
-
-                    break;
-                case R.id.red_button:
-                    userStore.add(3);
-                    Log.d(TAG, "userstore 3");
-                    if (randomStore.get(i).equals(userStore.get(i))) {
-                        Log.d(TAG, ""+randomStore.size() +"u"+userStore.size());
-                        test = true;
-                    }
-                    else {
-                        test=false;
-                        break;
-                    }
-
-                    break;
-            }
-            if (true){
-                i++;
-            }
-            else {
-
-                  userStore.clear();
-                  randomStore.clear();
-                  break;
-            }
-//            for (int counter = 0; counter < randomStore.size() - 1; counter++) {
-//                if (randomStore.get(counter).equals(userStore.get(counter))) {
-//                    test = true;
-//                } else {
-//                    test = false;
-//                    userStore.clear();
-//                    randomStore.clear();
-//                    // Log.d(TAG, "Not matched ,the random numbre" + randomStore.get(i) + "the user clicked number" + userStore.get(i))
-//                }
-//            }
-        }
-
-        if (true) {
-            scoreDisplay.setText(String.valueOf(userStore.size()));
-            count += 1;
-            // Log.d(TAG, "userstore " +userStore.size());
-            userStore.clear();
-            Toast.makeText(this, " matched: Next Level: " + count, Toast.LENGTH_LONG).show();
-            gamelunch(view);
-        }
     }
 
     String TAG = "infinite loop";
 
     public void gamelunch(View view) {
 
-            int i=0;
-
-
+           int i=0;
            random = new Random();
-            int pickcolor = random.nextInt(4) ; //,2,3,4
+            int pickcolor = random.nextInt(4) ; //0,1,2,3
 
             Log.d(TAG, "random number "+pickcolor);
 
             randomStore.add(pickcolor);     //stores the number
            int b=randomStore.size();
-             Log.d(TAG,"randomstore size "+b);
-
-
+        //     Log.d(TAG,"randomstore size "+b);
+             counter=1;
 
     do {
         switch (randomStore.get(i)) {
@@ -207,9 +154,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         yellow.startAnimation(animation);
                     }
-                }, 2000 * counter);
+                }, 1600 * counter);
                 counter++;
-                Log.d(TAG, "random number 0" );
+          //      Log.d(TAG, "random number 0" );
                 break;
             case 1:
                 handler.postDelayed(new Runnable() {
@@ -217,9 +164,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         green.startAnimation(animation);
                     }
-                }, 2000 * counter);
+                }, 1600 * counter);
                 counter++;
-                Log.d(TAG, "random number 1" );
+          //      Log.d(TAG, "random number 1" );
                 break;
 
 
@@ -229,9 +176,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         blue.startAnimation(animation);
                     }
-                }, 2000 * counter);
+                }, 1600 * counter);
                 counter++;
-                Log.d(TAG, "random number 2" );
+         //       Log.d(TAG, "random number 2" );
                 break;
             case 3:
                 handler.postDelayed(new Runnable() {
@@ -239,24 +186,99 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         red.startAnimation(animation);
                     }
-                }, 2000 * counter);
+                }, 1600 * counter);
                 counter++;
-                Log.d(TAG, "random number 3");
+           //     Log.d(TAG, "random number 3");
                 break;
 
         }
+
         i++;
         b--;
     }
+
         while ( b>0);
 
+      // hint.setText(s);
+      //  Log.d(TAG,"random."+ String.valueOf(randomStore.size()));
 
-
-        Toast.makeText(this, "Simon says,Your turn now ", Toast.LENGTH_LONG).show();
+     //   Log.d(TAG, "Simon says your turn");
         userStore.clear();
-        Log.d(TAG, "ramdom store is running");
-
     }
+
+   public void testAnswer(View view){
+        if(test) {
+            if ((randomStore.size() > 0 && userStore.size() > 0)) {
+
+                for (int l = 0; l < userStore.size(); l++) {
+                    if (randomStore.get(l).equals(userStore.get(l))) {
+                        //    Log.d(TAG, "size:r" + randomStore.size() + "u" + userStore.size());
+                        //   Log.d(TAG, "r" + randomStore.get(l) + "u" + userStore.get(l));
+                    } else {
+                        test = false;
+                        Toast.makeText(this, "Simon says, You failed :", Toast.LENGTH_SHORT).show();
+                        // Log.d(TAG, "size:r" + randomStore.size() + "u" + userStore.size());
+                        //  Log.d(TAG, "r" + randomStore.get(l) + "u" + userStore.get(l));
+                        count = 0;
+                        userStore.clear();
+                        randomStore.clear();
+                        scoreDisplay.setText(String.valueOf(0));
+                        gamelunch(view);
+
+                    }
+                }
+            }
+        }
+    if(userStore.size()==randomStore.size() && test){
+
+               count += 1;
+               Log.d(TAG, "userstore " + userStore.size());
+               Toast.makeText(this, "  Level: " + count, Toast.LENGTH_LONG).show();
+               scoreDisplay.setText(String.valueOf(randomStore.size()));
+             //  bestScoreDisplay.setText(String.valueOf(randomStore.size()));
+               userStore.clear();
+               gamelunch(view);
+           }
+
+   }
+
+   public void beginGameAnimation(){
+        int j=0;
+       do {
+
+           handler.postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   yellow.startAnimation(animation);
+                   counter++;
+                   green.startAnimation(animation);
+                   counter++;
+                   blue.startAnimation(animation);
+                   counter++;
+                   red.startAnimation(animation);
+                   counter++;
+
+               }
+           }, 800 * counter);
+           counter++;
+
+
+           //     Log.d(TAG, "random number 3");
+
+        j++;
+       }
+       while(j<3);
+       try {
+           if(j==3){
+
+           }else {
+               wait();
+           }
+
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
+   }
 
 
 }

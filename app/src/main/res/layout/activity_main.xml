@@ -41,6 +41,17 @@
                 android:textColor="@color/white"
                 android:hint="@string/score_hint"
                 android:text="@string/best_score_display"/>
+            <TextView
+                android:id="@+id/hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_green_light"
+                android:layout_margin="1dp"
+                android:textColor="@color/white"
+                android:text="677655443333212345678"/>
+
+
 
         </LinearLayout>
 
@@ -152,20 +163,13 @@
         android:layout_gravity="center"
         />
     <Button
-        android:id="@+id/giveUp"
+        android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="giveUp"
+        android:text="reset"
         android:layout_gravity="center"
         android:visibility="gone"
         android:tag="giveUp"/>
-
-
-
-
-
-
-
 
 
 </LinearLayout>
